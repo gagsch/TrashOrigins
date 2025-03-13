@@ -1,0 +1,17 @@
+{
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+        "attribute": "minecraft:generic.movement_speed",
+        "operation": "multiply_total",
+        "value": -0.5,
+        "name": "Refraction"
+    },
+    "tick_rate": 10,
+    "condition": {
+        "type": "origins:submerged_in",
+        "fluid": "minecraft:water"
+    },
+    
+    "name": "Refraction",
+    "description": "You walk 50% slower in water."
+}

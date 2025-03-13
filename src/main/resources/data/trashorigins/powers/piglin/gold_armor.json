@@ -1,0 +1,64 @@
+{
+    "type": "origins:multiple",
+
+    "only_gold": {
+        "type": "origins:restrict_armor",
+        "head": {
+            "type": "origins:ingredient",
+            "ingredient": {
+                "item": "minecraft:golden_helmet"
+            },
+            "inverted": true
+        },
+        "chest": {
+            "type": "origins:ingredient",
+            "ingredient": {
+                "item": "minecraft:golden_chestplate"
+            },
+            "inverted": true
+        },
+        "legs": {
+            "type": "origins:ingredient",
+            "ingredient": {
+                "item": "minecraft:golden_leggings"
+            },
+            "inverted": true
+        },
+        "feet": {
+            "type": "origins:ingredient",
+            "ingredient": {
+                "item": "minecraft:golden_boots"
+            },
+            "inverted": true
+        }
+    },
+    "better_gold": {
+        "type": "origins:modify_damage_taken",
+        "bientity_condition": {
+            "type": "origins:target_condition",
+            "condition": {
+                "type": "origins:equipped_item",
+                "equipment_slot": "chest",
+                "item_condition": {
+                    "type": "origins:ingredient",
+                    "ingredient": {
+                        "item": "minecraft:golden_chestplate"
+                    }
+                }
+            }
+        },
+        "damage_armor_condition":{
+            "type": "origins:health",
+            "comparison": "<",
+            "compare_to": 15
+        },
+        "modifier": {
+            "name": "Better Gold",
+            "operation": "multiply_base_multiplicative",
+            "value": -0.3
+        }
+    },
+
+    "name": "Blinded by Gold",
+    "description": "You can only wear Golden Armor. However, wearing gold gives you 30% damage reduction."
+}

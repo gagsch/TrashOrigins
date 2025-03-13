@@ -1,0 +1,33 @@
+{
+    "type": "origins:active_self",
+    "entity_action": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:execute_command",
+                "command": "effect give @a[distance=..20] minecraft:speed 10 0 true"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "effect give @a[distance=..20] minecraft:strength 15 1 true"
+            },
+            {
+                "type": "origins:play_sound",
+                "sound": "minecraft:item.goat_horn.sound.2"
+            }
+        ]
+    },
+    "hud_render": {
+        "should_render": true,
+        "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_02.png",
+        "bar_index": 1
+    },
+    "key": {
+        "key": "key.origins.primary_active",
+        "continuous": true
+    },
+    "cooldown": 600,
+
+    "name": "Seek",
+    "description": "Everyone in a 20 block radius receives Speed I for 10 seconds and Strength II for 15 seconds, but your health is halved for the duration of the (30s) cooldown."
+}

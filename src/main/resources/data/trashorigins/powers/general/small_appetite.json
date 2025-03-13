@@ -1,0 +1,16 @@
+{
+    "type": "origins:modify_food",
+    "food_modifier": {
+        "name": "Increased food points",
+        "operation": "multiply_total",
+        "value": 1.5
+    },
+    "saturation_modifier": {
+        "name": "Increased saturation points",
+        "operation": "multiply_total",
+        "value": 1.5
+    },
+
+    "name": "Small Appetite",
+    "description": "Food restores more of your hunger."
+}

@@ -1,0 +1,17 @@
+{
+    "powers": [
+        "trashorigins:horse/ride",
+        "trashorigins:general/fast",
+        "trashorigins:horse/high_jump",
+        "trashorigins:horse/step_height",
+        "trashorigins:horse/less_exhaust",
+        "origins:no_shield",
+        "trashorigins:horse/no_fly",
+        "trashorigins:general/slow_swim"
+    ],
+    
+    "icon": "minecraft:saddle",
+    "name": "Horse",
+    "description": "Horses are incredibly athletic animals.",
+    "impact": 2
+}

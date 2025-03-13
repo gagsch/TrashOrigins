@@ -1,0 +1,24 @@
+{
+    "type": "origins:modify_damage_taken",
+    "damage_condition": {
+        "type": "origins:or",
+        "conditions": [
+            {
+                "type": "origins:name",
+                "name": "fall"
+            },
+            {
+                "type": "origins:name",
+                "name": "fall.player"
+            }
+        ]
+    },
+    "modifier": {
+        "name": "Less fall damage",
+        "operation": "multiply_total",
+        "value": -0.5
+    },
+
+    "name": "Light",
+    "description": "You take half the fall damage."
+}

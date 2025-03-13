@@ -1,0 +1,15 @@
+{
+    "type": "origins:modify_damage_taken",
+    "modifier": {
+        "name": "Curse You",
+        "operation": "multiply_total",
+        "value": 2
+    },
+    "damage_condition": {
+        "type": "origins:name",
+        "name": "magic"
+    },
+
+    "name": "Curse You!",
+    "description": "Damage taken by magic is doubled"
+}

@@ -1,0 +1,17 @@
+{
+    "powers": [
+        "trashorigins:goat/horn_seek",
+        "trashorigins:goat/horn_seek_extra",
+        "trashorigins:goat/horn_sing",
+        "trashorigins:goat/horn_sing_extra",
+        "trashorigins:goat/ram",
+        "trashorigins:goat/milkable",
+        "trashorigins:general/slow_swim",
+        "origins:vegetarian"
+    ],
+    
+    "icon": "minecraft:goat_horn",
+    "name": "Goat",
+    "description": "These goats can blow their own horns. Their horns can provide powerful effects, but also come with equal drawbacks.",
+    "impact": 2
+}

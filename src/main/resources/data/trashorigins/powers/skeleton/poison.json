@@ -1,0 +1,9 @@
+{
+    "type": "origins:effect_immunity",
+    "effects": [
+        "minecraft:poison"
+    ],
+
+    "name": "No Veins",
+    "description": "Your lack of veins prevents you from being poisoned."
+}

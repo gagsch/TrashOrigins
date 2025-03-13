@@ -1,0 +1,30 @@
+{
+    "type": "origins:multiple",
+    "ram_action": {
+        "type": "origins:active_self",
+        "entity_action": {
+            "type": "origins:nothing"
+        },
+        "condition": {
+            "type": "origins:using_item",
+            "item_condition": {
+                "type": "origins:ingredient",
+                "ingredient": {
+                    "item": "minecraft:shield"
+                }
+            }
+        },
+        "cooldown": 300,
+        "hud_render": {
+            "sprite_location": "origins:textures/gui/resource_bar.png",
+            "bar_index": 2
+        },
+        "key": "key.attack"
+    },
+    "ram": {
+        "type": "trashorigins:ram"
+    },
+
+    "name": "Ram",
+    "description": "You can charge forward with a shield, dealing damage to an entity on impact."
+}

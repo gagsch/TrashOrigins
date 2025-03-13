@@ -1,0 +1,13 @@
+{
+    "replace": false,
+    "origins": [
+        "trashorigins:builder",
+        "trashorigins:skeleton",
+        "trashorigins:horse",
+        "trashorigins:turtle",
+        "trashorigins:goat",
+        "trashorigins:allay",
+        "trashorigins:radiant",
+        "trashorigins:piglin"
+    ]
+}

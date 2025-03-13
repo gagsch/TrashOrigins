@@ -1,0 +1,24 @@
+{
+    "type": "origins:modify_damage_taken",
+    "modifier": {
+        "name": "Semi-Pegasus",
+        "operation": "multiply_total",
+        "value": 100
+    },
+    "damage_condition": {
+        "type": "origins:or",
+        "conditions": [
+            {
+                "type": "origins:name",
+                "name": "flyIntoWall"
+            },
+            {
+                "type": "origins:name",
+                "name": "flyIntoWall.player"
+            }
+        ]
+    },
+
+    "name": "Semi-Pegasus",
+    "description": "You die if you take any velocity damage."
+}

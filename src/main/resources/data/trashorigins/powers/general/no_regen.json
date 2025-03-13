@@ -1,0 +1,6 @@
+{
+    "type": "origins:disable_regen",
+    
+    "name": "No Healing",
+    "description": "You cannot naturally regenerate health."
+}

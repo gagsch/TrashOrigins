@@ -1,0 +1,17 @@
+{
+    "type": "origins:action_on_being_used",
+    "held_item_action": {
+        "type": "origins:consume"
+    },
+    "result_stack": {
+        "item": "minecraft:milk_bucket"
+    },
+    "item_condition": {
+        "type": "origins:ingredient",
+        "ingredient": {
+            "item": "minecraft:bucket"
+        }
+    },
+
+    "hidden": true
+}

@@ -1,0 +1,16 @@
+{
+    "powers": [
+        "trashorigins:skeleton/withered",
+        "trashorigins:skeleton/while_withered",
+        "trashorigins:skeleton/poison",
+        "trashorigins:skeleton/bone",
+        "trashorigins:general/no_regen",
+        "trashorigins:skeleton/sun_burn",
+        "trashorigins:skeleton/sun_burn_helmet"
+    ],
+    
+    "icon": "minecraft:bone",
+    "name": "Skeleton",
+    "description": "An undead monster of the night, skeletons are naturally afriad of the sun. They can replace their fractured bones.",
+    "impact": 2
+}

@@ -1,0 +1,10 @@
+{
+    "type": "origins:modify_jump",
+    "modifier": {
+        "operation": "addition",
+        "value": 0.15
+    },
+
+    "name": "High Jump",
+    "description": "You jump one block higher than humans."
+}

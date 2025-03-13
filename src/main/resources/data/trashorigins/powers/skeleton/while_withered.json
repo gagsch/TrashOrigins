@@ -1,0 +1,15 @@
+{
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+        "name": "Extra damage when withered",
+        "operation": "multiply_total_multiplicative",
+        "value": 1
+    },
+    "condition": {
+        "type": "origins:status_effect",
+        "effect": "minecraft:wither",
+        "min_amplifier": 0
+    },
+
+    "hidden": true
+}

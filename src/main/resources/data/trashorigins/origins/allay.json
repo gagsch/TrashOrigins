@@ -1,0 +1,17 @@
+{
+    "powers": [
+        "trashorigins:allay/use_amethyst",
+        "trashorigins:allay/amethyst_count",
+        "trashorigins:allay/fly_consume",
+        "trashorigins:allay/flap",
+        "trashorigins:allay/curse_damage",
+        "trashorigins:general/itty_bitty",
+        "trashorigins:general/weak",
+        "origins:fragile"
+    ],
+    
+    "icon": "minecraft:amethyst_shard",
+    "name": "Allay",
+    "description": "The better sibling of the Vex. These little guys don't have a bad bone in there body.",
+    "impact": 3
+}

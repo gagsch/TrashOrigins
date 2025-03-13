@@ -1,0 +1,38 @@
+{
+    "type": "origins:multiple",
+
+    "less_damage": {
+        "type": "origins:modify_damage_dealt",
+        "condition": {
+            "type": "origins:dimension",
+            "dimension": "minecraft:the_nether",
+            "inverted": true
+        },
+        "modifier": {
+            "name": "Overworld Weakness",
+            "operation": "multiply_base_multiplicative",
+            "value": -0.4
+        }
+    },
+
+    "shaking":{
+        "type": "origins:shaking",
+        "condition": {
+            "type": "origins:dimension",
+            "dimension": "minecraft:the_nether",
+            "inverted": true
+        }
+    },
+
+    "no_regen":{
+        "type": "origins:disable_regen",
+        "condition": {
+            "type": "origins:dimension",
+            "dimension": "minecraft:the_nether",
+            "inverted": true
+        }
+    },
+
+    "name": "Fish Out of Water",
+    "description": "Outside the Nether, you deal 40% less damage and cannot naturally regenerate."
+}

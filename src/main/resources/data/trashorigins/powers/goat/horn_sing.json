@@ -1,0 +1,29 @@
+{
+    "type": "origins:active_self",
+    "entity_action": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:execute_command",
+                "command": "effect give @a[distance=..20] minecraft:regeneration 6 3 true"
+            },
+            {
+                "type": "origins:play_sound",
+                "sound": "minecraft:item.goat_horn.sound.1"
+            }
+        ]
+    },
+    "hud_render": {
+        "should_render": true,
+        "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+        "bar_index": 4
+    },
+    "key": {
+        "key": "key.origins.secondary_active",
+        "continuous": true
+    },
+    "cooldown": 800,
+
+    "name": "Sing",
+    "description": "Everyone in a 20 block radius gains Regeneration III for 6 seconds, but you can't attack anything for the duration of the (40s) cooldown."
+}

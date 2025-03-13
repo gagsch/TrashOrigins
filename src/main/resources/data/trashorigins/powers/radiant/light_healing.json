@@ -1,0 +1,43 @@
+{
+    "type":"origins:multiple",
+
+    "light_heal":{
+        "type": "origins:active_self",
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:heal",
+                    "amount": 3
+                },
+                {
+                    "type": "origins:feed",
+                    "food": 8,
+                    "saturation": 8
+                }
+            ]
+        },
+        "key": {
+            "key": "key.origins.primary_active",
+            "continuous": true
+        },
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+            "bar_index": 4
+        },
+        "condition": {
+            "type": "origins:resource",
+            "resource": "trashorigins:radiant/light_energy",
+            "comparison": ">",
+            "compare_to": 85
+        },
+        "cooldown": 150
+    },
+    "no_regen":{
+        "type": "origins:disable_regen"
+    },
+    
+    "name": "Light Healing",
+    "description": "Instead of regenerating naturally, you must use this ability while being in a well lit area."
+}

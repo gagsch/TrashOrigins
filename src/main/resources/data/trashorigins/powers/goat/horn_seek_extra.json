@@ -1,0 +1,81 @@
+{
+    "type": "origins:multiple",
+
+    "goat_extra_1":{
+        "type": "origins:conditioned_attribute",
+        "modifier": {
+            "attribute": "minecraft:generic.max_health",
+            "operation": "addition",
+            "value": -2
+        },
+        "tick_rate": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "trashorigins:goat/horn_seek",
+            "comparison": ">",
+            "compare_to": 400
+        }
+    },
+    "goat_extra_2": {
+        "type": "origins:conditioned_attribute",
+        "modifier": {
+            "attribute": "minecraft:generic.max_health",
+            "operation": "addition",
+            "value": -2
+        },
+        "tick_rate": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "trashorigins:goat/horn_seek",
+            "comparison": ">",
+            "compare_to": 300
+        }
+    },
+    "goat_extra_3":{
+        "type": "origins:conditioned_attribute",
+        "modifier": {
+            "attribute": "minecraft:generic.max_health",
+            "operation": "addition",
+            "value": -2
+        },
+        "tick_rate": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "trashorigins:goat/horn_seek",
+            "comparison": ">",
+            "compare_to": 200
+        }
+    },
+    "goat_extra_4":{
+        "type": "origins:conditioned_attribute",
+        "modifier": {
+            "attribute": "minecraft:generic.max_health",
+            "operation": "addition",
+            "value": -2
+        },
+        "tick_rate": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "trashorigins:goat/horn_seek",
+            "comparison": ">",
+            "compare_to": 100
+        }
+    },
+    "goat_extra_5":{
+        "type": "origins:conditioned_attribute",
+        "modifier": {
+            "attribute": "minecraft:generic.max_health",
+            "operation": "addition",
+            "value": -2
+        },
+        "tick_rate": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "trashorigins:goat/horn_seek",
+            "comparison": ">",
+            "compare_to": 0
+        }
+    },
+
+    "hidden": true
+}

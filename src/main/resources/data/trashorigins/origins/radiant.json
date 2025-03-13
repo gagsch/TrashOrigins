@@ -1,0 +1,18 @@
+{
+    "powers": [
+        "trashorigins:radiant/light_boost",
+        "trashorigins:radiant/light_energy",
+        "trashorigins:radiant/light_healing",
+        "trashorigins:radiant/no_food",
+        "trashorigins:radiant/less_fall_damage",
+        "trashorigins:radiant/no_water_collide",
+        "trashorigins:radiant/no_mob_collision",
+        "trashorigins:radiant/refraction",
+        "trashorigins:general/weak"
+    ],
+    
+    "icon": "minecraft:glowstone_dust",
+    "name": "Radiant",
+    "description": "Radiants are born from pure light, taking form as living beams of energy.",
+    "impact": 3
+}

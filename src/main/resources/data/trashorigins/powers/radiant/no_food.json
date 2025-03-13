@@ -1,0 +1,34 @@
+{
+	"type": "origins:multiple",
+
+	"prevent_food_use": {
+		"type":"origins:prevent_item_use",
+		"item_condition":{
+			"type":"origins:and",
+			"conditions":[
+				{
+					"type":"origins:food"
+				},
+				{
+					"type":"origins:ingredient",
+					"ingredient":{
+						"tag":"origins:ignore_diet"
+					},
+					"inverted":true
+				}
+			]
+		}
+	},
+
+	"prevent_starvation": {
+		"type": "origins:modify_exhaustion",
+		"modifier": {
+			"name": "Increased exhaustion",
+			"operation": "multiply_base",
+			"value": -2.0
+		}
+	},
+	
+    "name": "No Eating",
+    "description": "You cannot starve or eat food."
+}

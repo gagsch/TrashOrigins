@@ -1,0 +1,12 @@
+{
+    "type": "origins:attribute",
+    "modifier": {
+        "name": "Speed Increase",
+        "attribute": "minecraft:generic.movement_speed",
+        "value": 0.75,
+        "operation": "multiply_base"
+    },
+
+    "name": "Horse-Power",
+    "description": "You are faster than most."
+}

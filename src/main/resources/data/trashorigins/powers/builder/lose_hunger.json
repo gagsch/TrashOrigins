@@ -1,0 +1,14 @@
+{
+    "type": "origins:action_over_time",
+    "entity_action": {
+        "type": "origins:exhaust",
+        "amount": 0.5
+    },
+    "interval": 6,
+    "condition": {
+        "type": "origins:creative_flying"
+    },
+
+    "name": "Don't Starve",
+    "description": "While flying, you starve very quickly."
+}

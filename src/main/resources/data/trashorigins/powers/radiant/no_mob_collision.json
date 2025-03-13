@@ -1,0 +1,6 @@
+{
+    "type": "origins:prevent_entity_collision",
+
+    "name": "Just Photons",
+    "description": "You cannot collide with any entities."
+}

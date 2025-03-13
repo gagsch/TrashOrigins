@@ -1,0 +1,15 @@
+{
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+        "operation": "multiply_total",
+        "value": -1
+    },
+    "tick_rate": 20,
+    "condition": {
+        "type": "origins:resource",
+        "resource": "trashorigins:goat/horn_sing",
+        "comparison": ">",
+        "compare_to": 1
+    },
+    "hidden": true
+}

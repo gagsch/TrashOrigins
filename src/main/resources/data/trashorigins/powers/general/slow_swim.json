@@ -1,0 +1,10 @@
+{
+    "type": "origins:modify_swim_speed",
+    "modifier": {
+        "operation": "multiply_base",
+        "value": -0.4
+    },
+
+    "name": "Slow Swimmer",
+    "description": "You swim 40% slower."
+}
