@@ -10,7 +10,9 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ToolActions;
 import xyz.gagsch.trashorigins.TrashOrigins;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -28,16 +30,15 @@ public class RamPower extends PowerFactory<NoConfiguration> {
 
     @Override
     protected int tickInterval(NoConfiguration configuration, Entity entity) {
-        return 2;
+        return 1;
     }
 
     @Override
     public void tick(ConfiguredPower<NoConfiguration, ?> configuration, Entity entity) {
-        if (!(entity instanceof LivingEntity living) || entity.level().isClientSide)
+        if (!(entity instanceof LivingEntity living) || entity.level().isClientSide || entity.isPassenger())
             return;
 
-        AtomicInteger atomicResource = new AtomicInteger();
-        atomicResource.set(-1);
+        AtomicInteger atomicResource = new AtomicInteger(-1);
 
         IPowerContainer.get(entity).ifPresent(container -> {
             container.getPower(RAM_ABILITY_LOCATION).value().getValue(living).ifPresent(atomicResource::set);
@@ -45,15 +46,20 @@ public class RamPower extends PowerFactory<NoConfiguration> {
 
         float resource = atomicResource.get();
 
-        if (resource < 280) {
+        if (resource < 270) {
             hasHit = false;
             return;
         }
-        else if (hasHit) {
+        else if (!isBlocking(living)) {
+            hasHit = true;
+            return;
+        }
+        else if (hasHit || living.isInWater()) {
             return;
         }
 
-        float velocityChange = (resource - 280) / 15 + 0.4f;
+        int armor = living.getArmorValue();
+        float velocityChange = (resource - 270) / (20f + armor * 1.5f) + 0.4f;
 
         if (!entity.onGround())
             velocityChange /= 2;
@@ -61,20 +67,28 @@ public class RamPower extends PowerFactory<NoConfiguration> {
         Vec3 lookDir = entity.getLookAngle().normalize();
         Vec3 velocity = new Vec3(lookDir.x * velocityChange, entity.getDeltaMovement().y(), lookDir.z * velocityChange);
 
-        TrashOrigins.LOGGER.info(String.valueOf(velocityChange));
-
         entity.setDeltaMovement(velocity);
         entity.hurtMarked = true;
 
         LivingEntity nearest = entity.level().getNearestEntity(
                 LivingEntity.class, TargetingConditions.DEFAULT, living,
                 entity.getX(), entity.getY(), entity.getZ(),
-                entity.getBoundingBox().inflate(1));
+                entity.getBoundingBox());
 
         if (nearest != null) {
-            nearest.hurt(entity.damageSources().generic(), 8.0f);
+            nearest.hurt(entity.damageSources().generic(), 6 + armor / 4);
             entity.level().playSound(null, entity.blockPosition(), SoundEvents.GOAT_RAM_IMPACT, SoundSource.PLAYERS, 1, 1);
             hasHit = true;
         }
+    }
+
+    public static boolean isBlocking(LivingEntity entity) {
+        if (entity.isUsingItem() && !entity.getUseItem().isEmpty()) {
+            Item item = entity.getUseItem().getItem();
+            if (entity.getUseItem().canPerformAction(ToolActions.SHIELD_BLOCK)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -25,11 +25,12 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.Nullable;
-import xyz.gagsch.trashorigins.TrashOrigins;
 
 import java.util.*;
 
-public class PiglinBehavior implements IPiglinPower {
+import static xyz.gagsch.trashorigins.powers.Powers.PIGLIN_CAPITALISM_LOCATION;
+
+public class PiglinBehavior {
     public static final Map<Player, List<AbstractPiglin>> PIGLIN_BEHAVIOR_MAP = new HashMap<>();
     public static final PiglinTeleporter PIGLIN_TELEPORTER = new PiglinTeleporter();
 
@@ -62,7 +63,7 @@ public class PiglinBehavior implements IPiglinPower {
             IPowerContainer.get(player).ifPresent(handler -> {
                 ItemStack itemstack = player.getItemInHand(event.getHand());
 
-                if (handler.hasPower(PIGLIN_CAPITALISM) && addBehavior(player, piglin, itemstack)) {
+                if (handler.hasPower(PIGLIN_CAPITALISM_LOCATION) && addBehavior(player, piglin, itemstack)) {
                     ClientboundLevelParticlesPacket packet = new ClientboundLevelParticlesPacket(
                             ParticleTypes.HAPPY_VILLAGER, false,
                             piglin.getX(), piglin.getY() + 1, piglin.getZ(),

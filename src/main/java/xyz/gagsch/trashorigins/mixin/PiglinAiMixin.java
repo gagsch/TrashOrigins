@@ -9,14 +9,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import xyz.gagsch.trashorigins.powers.piglin.IPiglinPower;
+
+import static xyz.gagsch.trashorigins.powers.Powers.PIGLIN_NEUTRAL_LOCATION;
 
 @Mixin(PiglinAi.class)
-public class PiglinAiMixin implements IPiglinPower {
+public class PiglinAiMixin {
     @Inject(method = "angerNearbyPiglins", at = @At("HEAD"), cancellable = true)
     private static void angerNearbyPiglins(Player player, boolean ignoreVision, CallbackInfo ci) {
         IPowerContainer.get(player).ifPresent(handler -> {
-            if (handler.hasPower(PIGLIN_NEUTRAL)) {
+            if (handler.hasPower(PIGLIN_NEUTRAL_LOCATION)) {
                 ci.cancel();
             }
         });
@@ -25,7 +26,7 @@ public class PiglinAiMixin implements IPiglinPower {
     @Inject(method = "isWearingGold", at = @At("RETURN"), cancellable = true)
     private static void isWearingGold(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
         IPowerContainer.get(entity).ifPresent(handler -> {
-            cir.setReturnValue(handler.hasPower(PIGLIN_NEUTRAL));
+            cir.setReturnValue(handler.hasPower(PIGLIN_NEUTRAL_LOCATION));
         });
     }
 }

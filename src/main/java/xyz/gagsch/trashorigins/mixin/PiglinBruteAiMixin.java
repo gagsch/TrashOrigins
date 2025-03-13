@@ -8,12 +8,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import xyz.gagsch.trashorigins.powers.piglin.IPiglinPower;
 
 import java.util.Optional;
 
+import static xyz.gagsch.trashorigins.powers.Powers.PIGLIN_NEUTRAL_LOCATION;
+
 @Mixin(PiglinBruteAi.class)
-public class PiglinBruteAiMixin implements IPiglinPower {
+public class PiglinBruteAiMixin {
     /**
      * @author blubby
      * @reason piglins go after all players no matter what, changed to not go after piglin neutral players
@@ -24,7 +25,7 @@ public class PiglinBruteAiMixin implements IPiglinPower {
 
         if (optionalLivingEntity.isPresent()) {
             IPowerContainer.get(optionalLivingEntity.get()).ifPresent(handler -> {
-                if (handler.hasPower(PIGLIN_NEUTRAL)) {
+                if (handler.hasPower(PIGLIN_NEUTRAL_LOCATION)) {
                     cir.setReturnValue(Optional.empty());
                 }
             });

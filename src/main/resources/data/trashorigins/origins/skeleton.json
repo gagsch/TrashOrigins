@@ -11,6 +11,6 @@
     
     "icon": "minecraft:bone",
     "name": "Skeleton",
-    "description": "An undead monster of the night, skeletons are naturally afriad of the sun. They can replace their fractured bones.",
+    "description": "An undead monster of the night, skeletons are naturally afriad of the sun.",
     "impact": 2
 }
