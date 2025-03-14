@@ -4,7 +4,6 @@ import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import io.github.edwinmindcraft.apoli.api.configuration.NoConfiguration;
 import io.github.edwinmindcraft.apoli.api.power.configuration.ConfiguredPower;
 import io.github.edwinmindcraft.apoli.api.power.factory.PowerFactory;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -13,14 +12,14 @@ import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ToolActions;
-import xyz.gagsch.trashorigins.TrashOrigins;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static xyz.gagsch.trashorigins.powers.Powers.RAM_ABILITY_LOCATION;
 
 @SuppressWarnings("all")
 public class RamPower extends PowerFactory<NoConfiguration> {
     public static ConfiguredPower<?,?> RAM_ABILITY_POWER;
-    public static final ResourceLocation RAM_ABILITY_LOCATION = ResourceLocation.fromNamespaceAndPath(TrashOrigins.MODID, "goat/ram_ram_action");
     public boolean hasHit = false;
 
     public RamPower() {
