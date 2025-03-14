@@ -1,0 +1,6 @@
+{
+    "type": "origins:simple",
+
+    "name": "Blessed",
+    "description": "Golden tools crafted by Piglins receive enchantments. Doesn't work when quick crafting."
+}

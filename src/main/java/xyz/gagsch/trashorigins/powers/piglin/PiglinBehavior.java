@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.Brain;
@@ -25,6 +26,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.Nullable;
+import xyz.gagsch.trashorigins.TrashOrigins;
 
 import java.util.*;
 
@@ -35,7 +37,7 @@ public class PiglinBehavior {
     public static final PiglinTeleporter PIGLIN_TELEPORTER = new PiglinTeleporter();
 
     public static boolean addBehavior(Player player, AbstractPiglin piglin, ItemStack itemstack) {
-        if (PIGLIN_BEHAVIOR_MAP.containsKey(player) && (PIGLIN_BEHAVIOR_MAP.get(player).size() >= 15 || PIGLIN_BEHAVIOR_MAP.get(player).contains(piglin))) {
+        if (piglin.isBaby() || PIGLIN_BEHAVIOR_MAP.containsKey(player) && (PIGLIN_BEHAVIOR_MAP.get(player).size() >= 15 || PIGLIN_BEHAVIOR_MAP.get(player).contains(piglin))) {
             return false;
         }
 
@@ -111,6 +113,9 @@ public class PiglinBehavior {
                 Brain<?> brain = abstractPiglin.getBrain();
 
                 if (!abstractPiglin.isAlive()) {
+                    if (abstractPiglin.isDeadOrDying()) {
+                        player.sendSystemMessage(abstractPiglin.getCombatTracker().getDeathMessage());
+                    }
                     iterator.remove();
                     continue;
                 }

@@ -50,7 +50,7 @@
         "damage_armor_condition":{
             "type": "origins:health",
             "comparison": "<",
-            "compare_to": 15
+            "compare_to": 10
         },
         "modifier": {
             "name": "Better Gold",
