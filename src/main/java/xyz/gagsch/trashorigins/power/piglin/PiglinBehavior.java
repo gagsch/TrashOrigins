@@ -1,4 +1,4 @@
-package xyz.gagsch.trashorigins.powers.piglin;
+package xyz.gagsch.trashorigins.power.piglin;
 
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import net.minecraft.core.particles.ParticleTypes;
@@ -6,7 +6,6 @@ import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.Brain;
@@ -26,11 +25,10 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.Nullable;
-import xyz.gagsch.trashorigins.TrashOrigins;
 
 import java.util.*;
 
-import static xyz.gagsch.trashorigins.powers.Powers.PIGLIN_CAPITALISM_LOCATION;
+import static xyz.gagsch.trashorigins.power.Powers.PIGLIN_CAPITALISM_LOCATION;
 
 public class PiglinBehavior {
     public static final Map<Player, List<AbstractPiglin>> PIGLIN_BEHAVIOR_MAP = new HashMap<>();

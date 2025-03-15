@@ -1,0 +1,16 @@
+{
+    "powers": [
+        "trashorigins:shrieker/echo_locate",
+        "trashorigins:shrieker/night_vision",
+        "trashorigins:general/stout",
+        "origins:strong_arms",
+        "trashorigins:general/small_appetite",
+        "trashorigins:shrieker/no_milk",
+        "trashorigins:shrieker/blind"
+    ],
+
+    "icon": "minecraft:echo_shard",
+    "name": "Shrieker",
+    "description": "Shriekers dwell in sculk, hidden by darkness for centuries.",
+    "impact": 1
+}

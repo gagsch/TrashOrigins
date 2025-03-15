@@ -1,0 +1,32 @@
+{
+    "type": "origins:multiple",
+
+    "darkness":{
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:apply_effect",
+            "effect": {
+                "effect": "minecraft:darkness",
+                "show_particles": false,
+                "show_icon": false,
+                "duration": 100,
+                "amplifier": 0
+            }
+        },
+        "condition": {
+            "type": "origins:resource",
+            "resource": "trashorigins:shrieker/echo_locate",
+            "comparison": "<",
+            "compare_to": 280
+        },
+
+        "interval": 20
+    },
+    "shader": {
+        "type": "origins:shader",
+        "shader": "minecraft:shaders/post/sobel.json"
+    },
+
+    "name": "Blind",
+    "description": "You cannot see."
+}

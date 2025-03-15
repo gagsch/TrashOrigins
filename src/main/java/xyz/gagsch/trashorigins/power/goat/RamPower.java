@@ -1,4 +1,4 @@
-package xyz.gagsch.trashorigins.powers.goat;
+package xyz.gagsch.trashorigins.power.goat;
 
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import io.github.edwinmindcraft.apoli.api.configuration.NoConfiguration;
@@ -15,7 +15,7 @@ import net.minecraftforge.common.ToolActions;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static xyz.gagsch.trashorigins.powers.Powers.RAM_ABILITY_LOCATION;
+import static xyz.gagsch.trashorigins.power.Powers.RAM_ABILITY_LOCATION;
 
 @SuppressWarnings("all")
 public class RamPower extends PowerFactory<NoConfiguration> {

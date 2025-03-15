@@ -1,4 +1,4 @@
-package xyz.gagsch.trashorigins.powers;
+package xyz.gagsch.trashorigins.power;
 
 import io.github.edwinmindcraft.apoli.api.power.factory.PowerFactory;
 import io.github.edwinmindcraft.apoli.api.registry.ApoliRegistries;
@@ -6,8 +6,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import xyz.gagsch.trashorigins.TrashOrigins;
-import xyz.gagsch.trashorigins.powers.goat.RamPower;
-import xyz.gagsch.trashorigins.powers.radiant.LightBoostPower;
+import xyz.gagsch.trashorigins.power.goat.RamPower;
+import xyz.gagsch.trashorigins.power.radiant.LightBoostPower;
 
 public class Powers {
     public static final DeferredRegister<PowerFactory<?>> POWER_FACTORIES = DeferredRegister.create(ApoliRegistries.POWER_FACTORY_KEY.location(), TrashOrigins.MODID);

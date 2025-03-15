@@ -3,14 +3,14 @@
     "food_modifier": {
         "name": "Increased food points",
         "operation": "multiply_total",
-        "value": 1.5
+        "value": 0.33
     },
     "saturation_modifier": {
         "name": "Increased saturation points",
         "operation": "multiply_total",
-        "value": 1.5
+        "value": 0.5
     },
 
     "name": "Small Appetite",
-    "description": "Food restores more of your hunger."
+    "description": "Eating restores more of your hunger bar."
 }

@@ -14,7 +14,7 @@
             },
             {
                 "type": "origins:execute_command",
-                "command": "scale set pehkui:reach 0.85 @s"
+                "command": "scale set pehkui:reach 0.75 @s"
             },
             {
                 "type": "origins:execute_command",

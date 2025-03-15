@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
-import static xyz.gagsch.trashorigins.powers.Powers.PIGLIN_NEUTRAL_LOCATION;
+import static xyz.gagsch.trashorigins.power.Powers.PIGLIN_NEUTRAL_LOCATION;
 
 @Mixin(PiglinBruteAi.class)
 public class PiglinBruteAiMixin {

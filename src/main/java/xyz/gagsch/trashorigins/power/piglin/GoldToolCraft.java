@@ -1,4 +1,4 @@
-package xyz.gagsch.trashorigins.powers.piglin;
+package xyz.gagsch.trashorigins.power.piglin;
 
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import net.minecraft.util.RandomSource;
@@ -14,7 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-import static xyz.gagsch.trashorigins.powers.Powers.BLESSED_LOCATION;
+import static xyz.gagsch.trashorigins.power.Powers.BLESSED_LOCATION;
 
 public class GoldToolCraft {
     @SubscribeEvent

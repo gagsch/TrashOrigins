@@ -3,7 +3,7 @@
     "modifier": {
         "name": "Curse You",
         "operation": "multiply_total",
-        "value": 2
+        "value": 1
     },
     "damage_condition": {
         "type": "origins:name",

@@ -1,4 +1,4 @@
-package xyz.gagsch.trashorigins.powers.radiant;
+package xyz.gagsch.trashorigins.power.radiant;
 
 import io.github.edwinmindcraft.apoli.api.ApoliAPI;
 import io.github.edwinmindcraft.apoli.api.configuration.NoConfiguration;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-import static xyz.gagsch.trashorigins.powers.Powers.LIGHT_ENERGY_LOCATION;
+import static xyz.gagsch.trashorigins.power.Powers.LIGHT_ENERGY_LOCATION;
 
 @SuppressWarnings("all")
 public class LightBoostPower extends PowerFactory<NoConfiguration> {

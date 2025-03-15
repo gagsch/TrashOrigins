@@ -21,9 +21,9 @@
         "condition": {
             "type": "origins:fall_flying"
         },
-        "interval": 40
+        "interval": 60
     },
     
     "name": "Amethyst Wings",
-    "description": "You have elytra flight while your Amethyst Energy isn't empty. Flying consumes 0.5 point per second"
+    "description": "Flying consumes a point of energy every 3 seconds."
 }

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static xyz.gagsch.trashorigins.powers.Powers.PIGLIN_NEUTRAL_LOCATION;
+import static xyz.gagsch.trashorigins.power.Powers.PIGLIN_NEUTRAL_LOCATION;
 
 @Mixin(PiglinAi.class)
 public class PiglinAiMixin {

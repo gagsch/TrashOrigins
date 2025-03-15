@@ -1,0 +1,12 @@
+{
+    "type": "origins:prevent_item_use",
+    "item_condition": {
+        "type": "origins:ingredient",
+        "ingredient": {
+            "item": "minecraft:milk_bucket"
+        }
+    },
+
+    "name": "Lactose Intolerant",
+    "description": "You can't drink milk to clear effects."
+}

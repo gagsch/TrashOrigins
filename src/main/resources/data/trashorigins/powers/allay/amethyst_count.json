@@ -1,14 +1,14 @@
 {
     "type": "origins:resource",
     "min": 0,
-    "max": 50,
+    "max": 128,
     "hud_render": {
         "should_render": true,
         "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_01.png",
         "bar_index": 11
     },
-    "start_value": 0,
+    "start_value": 32,
 
     "name": "Amethyst Energy",
-    "description": "You have energy charged by amethyst shards, which is used for flying."
+    "description": "You have energy charged by amethyst shards used for flying."
 }

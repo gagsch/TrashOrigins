@@ -6,9 +6,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import xyz.gagsch.trashorigins.powers.Powers;
-import xyz.gagsch.trashorigins.powers.piglin.GoldToolCraft;
-import xyz.gagsch.trashorigins.powers.piglin.PiglinBehavior;
+import xyz.gagsch.trashorigins.power.Powers;
+import xyz.gagsch.trashorigins.power.piglin.GoldToolCraft;
+import xyz.gagsch.trashorigins.power.piglin.PiglinBehavior;
 
 @Mod(TrashOrigins.MODID)
 public class TrashOrigins {
