@@ -20,4 +20,6 @@ public class Powers {
     public static final ResourceLocation BLESSED_LOCATION = new ResourceLocation(TrashOrigins.MODID, "piglin/blessed");
     public static final ResourceLocation RAM_ABILITY_LOCATION = new ResourceLocation(TrashOrigins.MODID, "goat/ram_ram_action");
     public static final ResourceLocation LIGHT_ENERGY_LOCATION = new ResourceLocation(TrashOrigins.MODID, "radiant/light_energy");
+    public static final ResourceLocation BLIND_LOCATION = new ResourceLocation(TrashOrigins.MODID, "shrieker/blind");
+    public static final ResourceLocation ECHO_LOCATE_LOCATION = new ResourceLocation(TrashOrigins.MODID, "shrieker/echo_locate");
 }

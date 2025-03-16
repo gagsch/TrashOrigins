@@ -63,8 +63,9 @@ public class RamPower extends PowerFactory<NoConfiguration> {
         if (!entity.onGround())
             velocityChange /= 2;
 
+        Vec3 deltaMovement = entity.getDeltaMovement();
         Vec3 lookDir = entity.getLookAngle().normalize();
-        Vec3 velocity = new Vec3(lookDir.x * velocityChange, entity.getDeltaMovement().y(), lookDir.z * velocityChange);
+        Vec3 velocity = new Vec3(lookDir.x * velocityChange, deltaMovement.y(), lookDir.z * velocityChange);
 
         entity.setDeltaMovement(velocity);
         entity.hurtMarked = true;
@@ -76,6 +77,10 @@ public class RamPower extends PowerFactory<NoConfiguration> {
 
         if (nearest != null) {
             nearest.hurt(entity.damageSources().generic(), 6 + armor / 4);
+
+            nearest.setDeltaMovement(velocity.multiply(0.5, 0, 0.5).add(0, 0.6, 0));
+            entity.setDeltaMovement(0, velocity.y(), 0);
+
             entity.level().playSound(null, entity.blockPosition(), SoundEvents.GOAT_RAM_IMPACT, SoundSource.PLAYERS, 1, 1);
             hasHit = true;
         }

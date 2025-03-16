@@ -1,17 +1,8 @@
 {
     "type": "origins:active_self",
     "entity_action": {
-        "type": "origins:and",
-        "actions": [
-            {
-                "type": "origins:clear_effect",
-                "effect": "minecraft:darkness"
-            },
-            {
-                "type": "origins:play_sound",
-                "sound": "minecraft:entity.warden.roar"
-            }
-        ]
+        "type": "origins:play_sound",
+        "sound": "minecraft:entity.warden.roar"
     },
     "hud_render": {
         "should_render": true,
@@ -22,8 +13,8 @@
         "key": "key.origins.primary_active",
         "continuous": true
     },
-    "cooldown": 300,
+    "cooldown": 1200,
 
     "name": "Echo Location",
-    "description": "You are able to shriek every 15 seconds which enables you to \"see\" for a second."
+    "description": "You are able to shriek once a minute which enables you to sense your environment more."
 }

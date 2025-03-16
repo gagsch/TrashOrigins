@@ -2,9 +2,9 @@
     "type": "origins:modify_damage_dealt",
     "modifier": {
         "operation": "multiply_total",
-        "value": 0.2
+        "value": 0.25
     },
 
     "name": "Stout",
-    "description": "You deal 20% more damage."
+    "description": "You deal 25% more damage."
 }

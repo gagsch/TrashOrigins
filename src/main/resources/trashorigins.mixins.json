@@ -11,8 +11,9 @@
         "SimpleBiEntityActionMixin"
     ],
     "client": [
+        "LightTextureMixin"
     ],
     "injectors": {
         "defaultRequire": 1
-  }
+    }
 }

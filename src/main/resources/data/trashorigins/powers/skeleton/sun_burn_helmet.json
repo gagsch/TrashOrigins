@@ -1,28 +1,28 @@
 {
-    "type": "origins:stacking_status_effect",
-    "min_stacks": 0,
-    "max_stacks": 1,
-    "duration_per_stack": 100,
-    "tick_rate": 20,
-    "effects": [
-        {
-            "effect": "minecraft:slowness",
-            "is_ambient": true,
-            "show_particles": false,
-            "show_icon": true,
-            "amplifier": 1,
-            "duration": 1
+    "type": "origins:multiple",
+
+    "slowness":{
+        "type": "origins:conditioned_attribute",
+        "modifier": {
+            "attribute": "minecraft:generic.movement_speed",
+            "operation": "multiply_total",
+            "value": -0.35
         },
-        {
-            "effect": "minecraft:mining_fatigue",
-            "is_ambient": true,
-            "show_particles": false,
-            "show_icon": true,
-            "duration": 1
+        "tick_rate": 20,
+        "condition": {
+            "type": "origins:exposed_to_sun"
         }
-    ],
-    "condition": {
-        "type": "origins:exposed_to_sun"
+    },
+
+    "mining_speed": {
+        "type": "origins:modify_break_speed",
+        "modifier": {
+            "operation": "multiply_base",
+            "value": -0.35
+        },
+        "condition": {
+            "type": "origins:exposed_to_sun"
+        }
     },
 
     "hidden": true

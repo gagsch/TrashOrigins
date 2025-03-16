@@ -2,16 +2,18 @@
     "powers": [
         "trashorigins:turtle/turtle_master",
         "trashorigins:general/durable",
-        "origins:water_vision",
         "origins:swim_speed",
+        "origins:aqua_affinity",
+        "origins:water_vision",
+        "origins:aquatic",
+        "trashorigins:general/more_fall_damage",
         "trashorigins:general/slow",
         "origins:no_shield",
-        "origins:aquatic",
         "origins:vegetarian"
     ],
     
-    "icon": "minecraft:turtle_helmet",
-    "name": "Turdle",
+    "icon": "minecraft:scute",
+    "name": "Turtle",
     "description": "A rare species of humanoid turtle; they have evolved to be natural tanks.",
     "impact": 2
 }

@@ -10,7 +10,7 @@
             {
                 "type": "origins:change_resource",
                 "resource": "trashorigins:allay/amethyst_count",
-                "change": -4
+                "change": -6
             }
         ]
     },
@@ -29,8 +29,8 @@
         "comparison": ">",
         "compare_to": 0
     },
-    "cooldown": 20,
+    "cooldown": 40,
 
     "name": "Flapping",
-    "description": "Flap your wings to gain height. This action consumes one energy point."
+    "description": "Flap your wings to gain height. This action consumes six energy point."
 }

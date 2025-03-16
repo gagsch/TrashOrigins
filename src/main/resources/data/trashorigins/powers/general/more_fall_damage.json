@@ -1,0 +1,24 @@
+{
+    "type": "origins:modify_damage_taken",
+    "damage_condition": {
+        "type": "origins:or",
+        "conditions": [
+            {
+                "type": "origins:name",
+                "name": "fall"
+            },
+            {
+                "type": "origins:name",
+                "name": "fall.player"
+            }
+        ]
+    },
+    "modifier": {
+        "name": "More fall damage",
+        "operation": "multiply_total",
+        "value": 0.5
+    },
+
+    "name": "Heavy",
+    "description": "You take more fall damage."
+}

@@ -1,7 +1,6 @@
 {
     "powers": [
         "trashorigins:shrieker/echo_locate",
-        "trashorigins:shrieker/night_vision",
         "trashorigins:general/stout",
         "origins:strong_arms",
         "trashorigins:general/small_appetite",
@@ -11,6 +10,6 @@
 
     "icon": "minecraft:echo_shard",
     "name": "Shrieker",
-    "description": "Shriekers dwell in sculk, hidden by darkness for centuries.",
+    "description": "Shriekers are the prey of the Warden and have lived in darkness for centuries.",
     "impact": 1
 }

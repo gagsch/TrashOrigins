@@ -21,9 +21,9 @@
         "condition": {
             "type": "origins:fall_flying"
         },
-        "interval": 60
+        "interval": 40
     },
     
     "name": "Amethyst Wings",
-    "description": "Flying consumes a point of energy every 3 seconds."
+    "description": "Flying consumes a point of energy every 2 seconds."
 }

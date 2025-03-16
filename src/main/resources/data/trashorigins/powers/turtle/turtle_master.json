@@ -28,7 +28,7 @@
         "key": "key.origins.primary_active",
         "continuous": true
     },
-    "cooldown": 600,
+    "cooldown": 1200,
 
     "name": "Turtle Master",
     "description": "You become very resistant, but you can barely move."

@@ -13,7 +13,7 @@
             },
             {
                 "type": "origins:heal",
-                "amount": 6
+                "amount": 10
             }
         ]
     },
@@ -39,5 +39,5 @@
     },
 
     "name": "Replacable Bones",
-    "description": "Consuming a bone restores 3 hearts of health, with a cooldown of 4 seconds."
+    "description": "Consuming a bone restores 5 hearts of health, with a cooldown of 4 seconds."
 }
