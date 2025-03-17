@@ -16,7 +16,7 @@
     "modifier": {
         "name": "More fall damage",
         "operation": "multiply_total",
-        "value": 0.5
+        "value": 0.33
     },
 
     "name": "Heavy",

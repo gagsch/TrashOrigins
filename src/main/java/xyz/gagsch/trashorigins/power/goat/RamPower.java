@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.Vec3;
@@ -73,12 +74,13 @@ public class RamPower extends PowerFactory<NoConfiguration> {
         LivingEntity nearest = entity.level().getNearestEntity(
                 LivingEntity.class, TargetingConditions.DEFAULT, living,
                 entity.getX(), entity.getY(), entity.getZ(),
-                entity.getBoundingBox());
+                entity.getBoundingBox().inflate(0.3f));
 
         if (nearest != null) {
             nearest.hurt(entity.damageSources().generic(), 6 + armor / 4);
 
-            nearest.setDeltaMovement(velocity.multiply(0.5, 0, 0.5).add(0, 0.6, 0));
+            double knockback = 0.6 / (nearest.getAttribute(Attributes.KNOCKBACK_RESISTANCE).getValue() + 1);
+            nearest.setDeltaMovement(velocity.multiply(knockback, 0, knockback).add(0, knockback, 0));
             entity.setDeltaMovement(0, velocity.y(), 0);
 
             entity.level().playSound(null, entity.blockPosition(), SoundEvents.GOAT_RAM_IMPACT, SoundSource.PLAYERS, 1, 1);

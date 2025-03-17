@@ -36,13 +36,13 @@ public class GoldToolCraft {
                 boolean silkTouch = random.nextBoolean();
                 int weight = random.nextInt(0, 100);
 
-                enchantments.put(Enchantments.BLOCK_EFFICIENCY, random.nextInt(0, 3));
+                enchantments.put(Enchantments.BLOCK_EFFICIENCY, random.nextInt(0, 6));
 
                 if (silkTouch && weight > 70) {
                     enchantments.put(Enchantments.SILK_TOUCH, 1);
                 }
                 else if (weight > 30) {
-                    enchantments.put(Enchantments.BLOCK_FORTUNE, weight / 33);
+                    enchantments.put(Enchantments.BLOCK_FORTUNE, Math.min(3, weight / 30));
                 }
             }
             else {
@@ -50,18 +50,18 @@ public class GoldToolCraft {
                 boolean mobLooting = random.nextBoolean();
 
                 if (fireAspect) {
-                    enchantments.put(Enchantments.FIRE_ASPECT, random.nextInt(0, 2));
+                    enchantments.put(Enchantments.FIRE_ASPECT, random.nextInt(0, 3));
                 }
                 if (mobLooting) {
-                    enchantments.put(Enchantments.MOB_LOOTING, random.nextInt(0, 3));
+                    enchantments.put(Enchantments.MOB_LOOTING, random.nextInt(0, 4));
                 }
 
-                enchantments.put(Enchantments.SHARPNESS, random.nextInt(0, 5));
+                enchantments.put(Enchantments.SHARPNESS, random.nextInt(0, 6));
             }
 
-            enchantments.put(Enchantments.UNBREAKING, random.nextInt(7, 10));
+            enchantments.put(Enchantments.UNBREAKING, random.nextInt(5, 11));
 
-            if (random.nextInt(0, 10) == 10) {
+            if (random.nextInt(0, 10) == 0) {
                 enchantments.put(Enchantments.MENDING, 1);
             }
 
