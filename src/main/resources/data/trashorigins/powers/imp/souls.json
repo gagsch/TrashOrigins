@@ -1,0 +1,26 @@
+{
+    "type": "origins:multiple",
+
+    "resource": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 16,
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+            "bar_index": 18
+        },
+        "start_value": 0
+    },
+    "collect": {
+        "type": "origins:self_action_on_kill",
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "trashorigins:imp/souls_resource",
+            "change": 1
+        }
+    },
+
+    "name": "Souls",
+    "description": "You get souls from killing creatures."
+}

@@ -1,0 +1,37 @@
+{
+    "type": "origins:action_over_time",
+    "entity_action": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:change_resource",
+                "resource": "trashorigins:imp/souls_resource",
+                "change": -1
+            },
+            {
+                "type": "origins:heal",
+                "amount": 4
+            }
+        ]
+    },
+    "condition": {
+        "type": "origins:and",
+        "conditions": [
+            {
+                "type": "origins:relative_health",
+                "comparison": "<",
+                "compare_to": 1
+            },
+            {
+                "type": "origins:resource",
+                "resource": "trashorigins:imp/souls_resource",
+                "comparison": ">",
+                "compare_to": 0
+            }
+        ]
+    },
+    "interval": 40,
+
+    "name": "Selfish Healing",
+    "description": "One soul heals you for two hearts then get depleted."
+}

@@ -5,15 +5,11 @@
         "actions": [
             {
                 "type": "origins:execute_command",
-                "command": "scale set pehkui:height 0.5 @s"
+                "command": "scale set pehkui:height 0.9 @s"
             },
             {
                 "type": "origins:execute_command",
-                "command": "scale set pehkui:width 0.5 @s"
-            },
-            {
-                "type": "origins:execute_command",
-                "command": "scale set pehkui:reach 0.75 @s"
+                "command": "scale set pehkui:width 0.9 @s"
             },
             {
                 "type": "origins:execute_command",
@@ -25,7 +21,7 @@
         "type": "origins:execute_command",
         "command": "scale reset @s"
     },
-    
-    "name": "Small",
-    "description": "You are half the size of a human!"
+
+    "name": "Imp-Sized",
+    "description": "You are slightly smaller than a human."
 }

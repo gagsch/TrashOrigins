@@ -2,5 +2,5 @@
     "type": "origins:simple",
 
     "name": "Build an Army",
-    "description": "You can hire piglins to fight for you by giving them gold, with a limit of 15 hired piglins. Hired Piglins are protected from turning into Zombified Piglins when outside of the Nether."
+    "description": "You can hire piglins to fight for you by giving them gold, with a limit of 15 hired piglins. Hired Piglins are protected from turning into Zombified Piglins when outside of the Nether. Fire piglins by giving them soul fire items."
 }

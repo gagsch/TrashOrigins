@@ -36,7 +36,7 @@ public class GoldToolCraft {
                 boolean silkTouch = random.nextBoolean();
                 int weight = random.nextInt(0, 100);
 
-                enchantments.put(Enchantments.BLOCK_EFFICIENCY, random.nextInt(0, 6));
+                enchantments.put(Enchantments.BLOCK_EFFICIENCY, random.nextInt(0, 4));
 
                 if (silkTouch && weight > 70) {
                     enchantments.put(Enchantments.SILK_TOUCH, 1);
@@ -59,7 +59,7 @@ public class GoldToolCraft {
                 enchantments.put(Enchantments.SHARPNESS, random.nextInt(0, 6));
             }
 
-            enchantments.put(Enchantments.UNBREAKING, random.nextInt(5, 11));
+            enchantments.put(Enchantments.UNBREAKING, random.nextInt(4, 9));
 
             if (random.nextInt(0, 10) == 0) {
                 enchantments.put(Enchantments.MENDING, 1);

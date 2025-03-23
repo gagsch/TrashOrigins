@@ -3,7 +3,6 @@ package xyz.gagsch.trashorigins;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.logging.LogUtils;
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
-import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.world.level.material.FogType;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.common.MinecraftForge;

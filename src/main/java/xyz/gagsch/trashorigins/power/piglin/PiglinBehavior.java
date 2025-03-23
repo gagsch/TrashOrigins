@@ -2,9 +2,11 @@ package xyz.gagsch.trashorigins.power.piglin;
 
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -61,18 +63,31 @@ public class PiglinBehavior {
         Player player = event.getEntity();
         if (event.getTarget() instanceof AbstractPiglin piglin && !event.getLevel().isClientSide()) {
             IPowerContainer.get(player).ifPresent(handler -> {
+                if (!handler.hasPower(PIGLIN_CAPITALISM_LOCATION))
+                    return;
+
                 ItemStack itemstack = player.getItemInHand(event.getHand());
 
-                if (handler.hasPower(PIGLIN_CAPITALISM_LOCATION) && addBehavior(player, piglin, itemstack)) {
-                    ClientboundLevelParticlesPacket packet = new ClientboundLevelParticlesPacket(
-                            ParticleTypes.HAPPY_VILLAGER, false,
+                SimpleParticleType packet = null;
+
+                if (itemstack.is(ItemTags.PIGLIN_REPELLENTS) && PIGLIN_BEHAVIOR_MAP.containsKey(player) && PIGLIN_BEHAVIOR_MAP.get(player).contains(piglin)) {
+                    packet = ParticleTypes.ANGRY_VILLAGER;
+
+                    itemstack.hurtAndBreak(1, player, p -> {});
+                    piglin.getPersistentData().remove("owner");
+                    PIGLIN_BEHAVIOR_MAP.get(player).remove(piglin);
+                }
+                else if (addBehavior(player, piglin, itemstack)) {
+                    packet = ParticleTypes.HAPPY_VILLAGER;
+                }
+
+                if (packet != null) {
+                    ((ServerPlayer) player).connection.send(new ClientboundLevelParticlesPacket(
+                            packet, false,
                             piglin.getX(), piglin.getY() + 1, piglin.getZ(),
                             0.5f, 0.5f, 0.5f,
                             0.1f, 15
-                    );
-
-                    ((ServerPlayer) player).connection.send(packet);
-
+                    ));
                     event.setCancellationResult(InteractionResult.CONSUME);
                     event.setCanceled(true);
                 }

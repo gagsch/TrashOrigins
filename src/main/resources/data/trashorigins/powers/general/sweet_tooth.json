@@ -1,0 +1,50 @@
+{
+    "type": "origins:prevent_item_use",
+    "item_condition": {
+        "type": "origins:and",
+        "conditions": [
+            {
+                "type": "origins:food"
+            },
+            {
+                "type": "origins:ingredient",
+                "ingredient": [
+                    {
+                        "item": "minecraft:apple"
+                    },
+                    {
+                        "item": "minecraft:golden_apple"
+                    },
+                    {
+                        "item": "minecraft:enchanted_golden_apple"
+                    },
+                    {
+                        "item": "minecraft:chorus_fruit"
+                    },
+                    {
+                        "item": "minecraft:melon_slice"
+                    },
+                    {
+                        "item": "minecraft:sweet_berries"
+                    },
+                    {
+                        "item": "minecraft:pumpkin_pie"
+                    },
+                    {
+                        "item": "minecraft:cookie"
+                    },
+                    {
+                        "item": "minecraft:glow_berries"
+                    },
+                    {
+                        "item": "minecraft:honey_bottle"
+                    }
+                ],
+                "inverted": true
+            }
+        ]
+    },
+
+    "name": "Sweet Tooth",
+    "description": "You can only eat sweet foods."
+}

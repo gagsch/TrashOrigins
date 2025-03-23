@@ -46,7 +46,7 @@ public class RamPower extends PowerFactory<NoConfiguration> {
 
         float resource = atomicResource.get();
 
-        if (resource < 270) {
+        if (resource < 575) {
             hasHit = false;
             return;
         }
@@ -59,10 +59,10 @@ public class RamPower extends PowerFactory<NoConfiguration> {
         }
 
         int armor = living.getArmorValue();
-        float velocityChange = (resource - 270) / (20f + armor * 1.5f) + 0.4f;
+        float velocityChange = (resource - 575) / (20f + armor * 1.5f) + 0.3f;
 
         if (!entity.onGround())
-            velocityChange /= 2;
+            velocityChange /= 3;
 
         Vec3 deltaMovement = entity.getDeltaMovement();
         Vec3 lookDir = entity.getLookAngle().normalize();
@@ -77,7 +77,7 @@ public class RamPower extends PowerFactory<NoConfiguration> {
                 entity.getBoundingBox().inflate(0.3f));
 
         if (nearest != null) {
-            nearest.hurt(entity.damageSources().generic(), 6 + armor / 4);
+            nearest.hurt(entity.damageSources().generic(), 4 + armor / 4);
 
             double knockback = 0.6 / (nearest.getAttribute(Attributes.KNOCKBACK_RESISTANCE).getValue() + 1);
             nearest.setDeltaMovement(velocity.multiply(knockback, 0, knockback).add(0, knockback, 0));

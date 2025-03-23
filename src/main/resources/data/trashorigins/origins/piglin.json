@@ -12,5 +12,5 @@
     "icon": "minecraft:raw_gold",
     "name": "Piglin",
     "description": "Piglins are human-like pigs that reside in the Nether. They are obsessed with gold and attack anyone who isn't.",
-    "impact": 2
+    "impact": 3
 }

@@ -1,0 +1,15 @@
+{
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+        "operation": "multiply_base_multiplicative",
+        "resource": "trashorigins:imp/souls_resource",
+        "value": 0,
+        "modifier": {
+            "operation": "multiply_base_multiplicative",
+            "value": -0.95
+        }
+    },
+
+    "name": "The Power Of Many",
+    "description": "The more souls you have the more damage you deal."
+}

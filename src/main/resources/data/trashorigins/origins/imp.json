@@ -1,0 +1,16 @@
+{
+    "powers": [
+        "trashorigins:imp/souls",
+        "trashorigins:imp/soul_damage",
+        "trashorigins:imp/soul_healing",
+        "trashorigins:imp/imp_sized",
+        "trashorigins:general/no_regen",
+        "trashorigins:general/little_life",
+        "trashorigins:general/sweet_tooth"
+    ],
+
+    "icon": "minecraft:cookie",
+    "name": "Imp",
+    "description": "These devilish creatures are known for their love for all things mischievous.",
+    "impact": 2
+}
