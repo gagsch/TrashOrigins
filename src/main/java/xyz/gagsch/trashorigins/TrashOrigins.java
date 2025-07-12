@@ -4,6 +4,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.logging.LogUtils;
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import net.minecraft.world.level.material.FogType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,7 +24,6 @@ import static xyz.gagsch.trashorigins.power.Powers.*;
 @Mod(TrashOrigins.MODID)
 public class TrashOrigins {
     public static final String MODID = "trashorigins";
-    public static final Logger LOGGER = LogUtils.getLogger();
 
     public TrashOrigins() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -36,6 +37,7 @@ public class TrashOrigins {
     }
 
     public static class FogStuff {
+        @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
         public static void renderFog(ViewportEvent.RenderFog event) {
             if (event.getType() == FogType.NONE) {
