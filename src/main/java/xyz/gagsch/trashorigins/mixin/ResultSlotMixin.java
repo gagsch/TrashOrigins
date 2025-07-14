@@ -1,28 +1,36 @@
-package xyz.gagsch.trashorigins.power.piglin;
+package xyz.gagsch.trashorigins.mixin;
 
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ResultSlot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static xyz.gagsch.trashorigins.power.Powers.BLESSED_LOCATION;
 
-public class GoldToolCraft {
-    @SubscribeEvent
-    public static void craftItem(PlayerEvent.ItemCraftedEvent event) {
-        Player player = event.getEntity();
-        if (player.level().isClientSide() || !(event.getCrafting().getItem() instanceof TieredItem tieredItem && tieredItem.getTier() == Tiers.GOLD))
-            return;
+@Mixin(ResultSlot.class)
+public class ResultSlotMixin {
+    @Shadow
+    @Final
+    private Player player;
 
+    @Unique
+    private static void trashorigins$addEnchantments(Player player, ItemStack stack, TieredItem tieredItem) {
         RandomSource random = player.getRandom();
 
         IPowerContainer.get(player).ifPresent(handler -> {
@@ -67,9 +75,21 @@ public class GoldToolCraft {
 
             for (Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
                 if (entry.getValue() > 0) {
-                    event.getCrafting().enchant(entry.getKey(), entry.getValue());
+                    stack.enchant(entry.getKey(), entry.getValue());
                 }
             }
         });
     }
+
+    @Inject(method = "remove", at = @At("TAIL"), cancellable = true)
+    private void afterRemove(int amount, CallbackInfoReturnable<ItemStack> cir) {
+        if (player.level().isClientSide) return;
+
+        ItemStack stack = cir.getReturnValue();
+        if (stack.getItem() instanceof TieredItem tiered && tiered.getTier() == Tiers.GOLD && !stack.isEnchanted()) {
+            trashorigins$addEnchantments(player, stack, tiered);
+            cir.setReturnValue(stack);
+        }
+    }
+
 }

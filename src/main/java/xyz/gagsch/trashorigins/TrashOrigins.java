@@ -1,7 +1,6 @@
 package xyz.gagsch.trashorigins;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.logging.LogUtils;
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import net.minecraft.world.level.material.FogType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,18 +11,20 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.slf4j.LoggerFactory;
 import xyz.gagsch.trashorigins.power.Powers;
-import xyz.gagsch.trashorigins.power.piglin.GoldToolCraft;
 import xyz.gagsch.trashorigins.power.piglin.PiglinBehavior;
 import org.slf4j.Logger;
 
 import java.util.OptionalInt;
 
+import static net.minecraftforge.versions.forge.ForgeVersion.MOD_ID;
 import static xyz.gagsch.trashorigins.power.Powers.*;
 
 @Mod(TrashOrigins.MODID)
 public class TrashOrigins {
     public static final String MODID = "trashorigins";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public TrashOrigins() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -31,7 +32,6 @@ public class TrashOrigins {
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(FogStuff.class);
         MinecraftForge.EVENT_BUS.register(PiglinBehavior.class);
-        MinecraftForge.EVENT_BUS.register(GoldToolCraft.class);
 
         Powers.POWER_FACTORIES.register(bus);
     }
