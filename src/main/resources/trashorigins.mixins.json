@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "trashorigins.refmap.json",
   "mixins": [
+    "MonsterMixin",
     "PiglinAiMixin",
     "PiglinBruteAiMixin",
     "PlayerMixin",

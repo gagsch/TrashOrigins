@@ -2,6 +2,7 @@ package xyz.gagsch.trashorigins.mixin;
 
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,5 +29,26 @@ public class PiglinAiMixin {
         IPowerContainer.get(entity).ifPresent(handler -> {
             cir.setReturnValue(handler.hasPower(PIGLIN_NEUTRAL_LOCATION));
         });
+    }
+
+    @Inject(method = "wantsToStopFleeing", at = @At("HEAD"), cancellable = true)
+    private static void wantsToStopFleeing(Piglin piglin, CallbackInfoReturnable<Boolean> cir) {
+        if (piglin.getPersistentData().contains("owner")) {
+            cir.setReturnValue(true);
+        }
+    }
+
+    @Inject(method = "isNearAvoidTarget", at = @At("HEAD"), cancellable = true)
+    private static void isNearAvoidTarget(Piglin piglin, CallbackInfoReturnable<Boolean> cir) {
+        if (piglin.getPersistentData().contains("owner")) {
+            cir.setReturnValue(false);
+        }
+    }
+
+    @Inject(method = "isNearZombified", at = @At("HEAD"), cancellable = true)
+    private static void isNearZombified(Piglin piglin, CallbackInfoReturnable<Boolean> cir) {
+        if (piglin.getPersistentData().contains("owner")) {
+            cir.setReturnValue(false);
+        }
     }
 }

@@ -75,6 +75,7 @@ public class PiglinBehavior {
 
                     itemstack.hurtAndBreak(1, player, p -> {});
                     piglin.getPersistentData().remove("owner");
+                    piglin.setImmuneToZombification(false);
                     PIGLIN_BEHAVIOR_MAP.get(player).remove(piglin);
                 }
                 else if (addBehavior(player, piglin, itemstack)) {
@@ -139,10 +140,11 @@ public class PiglinBehavior {
                 }
 
                 double distance = player.distanceToSqr(abstractPiglin);
+                float baseWalkSpeed = player.getSpeed() * 10.5f;
 
                 if (distance > 400) {
                     brain.eraseMemory(MemoryModuleType.ANGRY_AT);
-                    brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(player.blockPosition(), 1f, 1));
+                    brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(player.blockPosition(), baseWalkSpeed * 1.25f, 1));
                     if (distance > 1600) {
                         abstractPiglin.teleportTo(player.getX(), player.getY(), player.getZ());
                     }
@@ -152,7 +154,7 @@ public class PiglinBehavior {
                 } else if (!targetNull && currentTarget.isEmpty()) {
                     brain.setMemory(MemoryModuleType.ANGRY_AT, targetUUID);
                 } else if (targetNull) {
-                    brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(player.blockPosition(), 0.95f, 4));
+                    brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(player.blockPosition(), baseWalkSpeed, 5));
                 }
             }
         }
