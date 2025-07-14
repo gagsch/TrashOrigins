@@ -163,12 +163,21 @@ public class PiglinBehavior {
     private static @Nullable LivingEntity getTarget(Player player) {
         var lastHurt = player.getLastHurtMob();
         var lastHurtBy = player.getLastHurtByMob();
+        LivingEntity target = lastHurt != null ? lastHurt : lastHurtBy;
 
-        if (lastHurt instanceof Player && lastHurt == lastHurtBy) {
-            return lastHurt;
+        if (lastHurt != lastHurtBy) {
+            if (lastHurt instanceof Player) {
+                target = lastHurtBy;
+            } else if (lastHurtBy instanceof Player) {
+                target = lastHurt;
+            }
         }
 
-        return findNearestHostile(player);
+        if (target == null || target.isRemoved()) {
+            target = findNearestHostile(player);
+        }
+
+        return target;
     }
 
     private static @Nullable LivingEntity findNearestHostile(Player player) {

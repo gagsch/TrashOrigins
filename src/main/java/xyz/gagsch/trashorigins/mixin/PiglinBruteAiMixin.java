@@ -5,6 +5,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.monster.piglin.PiglinBruteAi;
+import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -22,14 +23,18 @@ public class PiglinBruteAiMixin {
      */
     @Inject(method = "findNearestValidAttackTarget", at = @At(value = "RETURN", ordinal = 1), cancellable = true)
     private static void findNearestValidAttackTarget(AbstractPiglin piglin, CallbackInfoReturnable<Optional<? extends LivingEntity>> cir) {
-        Optional<? extends LivingEntity> optionalLivingEntity = cir.getReturnValue();
+        Optional<? extends LivingEntity> livingEntity = cir.getReturnValue();
 
-        if (optionalLivingEntity.isPresent()) {
-            IPowerContainer.get(optionalLivingEntity.get()).ifPresent(handler -> {
+        if (livingEntity.isPresent()) {
+            IPowerContainer.get(livingEntity.get()).ifPresent(handler -> {
                 if (handler.hasPower(PIGLIN_NEUTRAL_LOCATION)) {
                     cir.setReturnValue(Optional.empty());
                 }
             });
+
+            if (piglin.getPersistentData().contains("owner")) {
+                cir.setReturnValue(Optional.empty());
+            }
         }
     }
 }
