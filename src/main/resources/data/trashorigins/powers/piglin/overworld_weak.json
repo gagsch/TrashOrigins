@@ -11,7 +11,7 @@
         "modifier": {
             "name": "Overworld Weakness",
             "operation": "multiply_base_multiplicative",
-            "value": -0.4
+            "value": -0.5
         }
     },
 
@@ -25,7 +25,11 @@
     },
 
     "no_regen":{
-        "type": "origins:disable_regen",
+        "type": "origins:modify_healing",
+        "modifier": {
+            "operation": "multiply_total",
+            "value": -0.5
+        },
         "condition": {
             "type": "origins:dimension",
             "dimension": "minecraft:the_nether",
@@ -33,6 +37,6 @@
         }
     },
 
-    "name": "Fish Out of Water",
-    "description": "Outside the Nether, you deal 40% less damage and cannot naturally regenerate."
+    "name": "Gift of the Elders",
+    "description": "You and your army won't zombify outside the Nether, but your damage and regeneration will be halved."
 }

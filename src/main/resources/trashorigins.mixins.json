@@ -9,7 +9,6 @@
     "PiglinAiMixin",
     "PiglinBruteAiMixin",
     "PlayerMixin",
-    "ResultSlotMixin",
     "SimpleBiEntityActionMixin"
   ],
   "client": [

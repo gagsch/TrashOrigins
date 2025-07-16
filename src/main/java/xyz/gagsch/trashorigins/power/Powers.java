@@ -16,8 +16,7 @@ public class Powers {
     public static final RegistryObject<RamPower> RAM = POWER_FACTORIES.register("ram", RamPower::new);
 
     public static final ResourceLocation PIGLIN_NEUTRAL_LOCATION = new ResourceLocation(TrashOrigins.MODID, "piglin/piglin_neutral");
-    public static final ResourceLocation PIGLIN_CAPITALISM_LOCATION = new ResourceLocation(TrashOrigins.MODID, "piglin/capitalism");
-    public static final ResourceLocation BLESSED_LOCATION = new ResourceLocation(TrashOrigins.MODID, "piglin/blessed");
+    public static final ResourceLocation PIGLIN_HIRE_PIGLIN_LOCATION = new ResourceLocation(TrashOrigins.MODID, "piglin/hire_piglin");
     public static final ResourceLocation RAM_ABILITY_LOCATION = new ResourceLocation(TrashOrigins.MODID, "goat/ram_ram_action");
     public static final ResourceLocation LIGHT_ENERGY_LOCATION = new ResourceLocation(TrashOrigins.MODID, "radiant/light_energy");
     public static final ResourceLocation BLIND_LOCATION = new ResourceLocation(TrashOrigins.MODID, "shrieker/blind");

@@ -2,11 +2,9 @@ package xyz.gagsch.trashorigins.power.piglin;
 
 import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -30,14 +28,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-import static xyz.gagsch.trashorigins.power.Powers.PIGLIN_CAPITALISM_LOCATION;
+import static xyz.gagsch.trashorigins.power.Powers.PIGLIN_HIRE_PIGLIN_LOCATION;
 
 public class PiglinBehavior {
     public static final Map<Player, List<AbstractPiglin>> PIGLIN_BEHAVIOR_MAP = new HashMap<>();
     public static final PiglinTeleporter PIGLIN_TELEPORTER = new PiglinTeleporter();
 
     public static boolean addBehavior(Player player, AbstractPiglin piglin, ItemStack itemstack) {
-        if (piglin.isBaby() || PIGLIN_BEHAVIOR_MAP.containsKey(player) && (PIGLIN_BEHAVIOR_MAP.get(player).size() >= 15 || PIGLIN_BEHAVIOR_MAP.get(player).contains(piglin))) {
+        if (piglin.isBaby() || PIGLIN_BEHAVIOR_MAP.containsKey(player) && (PIGLIN_BEHAVIOR_MAP.get(player).size() >= 10 || PIGLIN_BEHAVIOR_MAP.get(player).contains(piglin))) {
             return false;
         }
 
@@ -46,6 +44,7 @@ public class PiglinBehavior {
         if (itemstack.is(Items.GOLD_INGOT) && !piglin.getPersistentData().hasUUID("owner")) {
             piglin.getPersistentData().putUUID("owner", player.getUUID());
             itemstack.shrink(1);
+
             value = true;
         }
 
@@ -63,28 +62,18 @@ public class PiglinBehavior {
         Player player = event.getEntity();
         if (event.getTarget() instanceof AbstractPiglin piglin && !event.getLevel().isClientSide()) {
             IPowerContainer.get(player).ifPresent(handler -> {
-                if (!handler.hasPower(PIGLIN_CAPITALISM_LOCATION))
+                if (!handler.hasPower(PIGLIN_HIRE_PIGLIN_LOCATION))
                     return;
 
                 ItemStack itemstack = player.getItemInHand(event.getHand());
 
-                SimpleParticleType packet = null;
-
-                if (itemstack.is(ItemTags.PIGLIN_REPELLENTS) && PIGLIN_BEHAVIOR_MAP.containsKey(player) && PIGLIN_BEHAVIOR_MAP.get(player).contains(piglin)) {
-                    packet = ParticleTypes.ANGRY_VILLAGER;
-
-                    itemstack.hurtAndBreak(1, player, p -> {});
-                    piglin.getPersistentData().remove("owner");
-                    piglin.setImmuneToZombification(false);
-                    PIGLIN_BEHAVIOR_MAP.get(player).remove(piglin);
+                if (itemstack.getItem() == Items.PORKCHOP || itemstack.getItem() == Items.COOKED_PORKCHOP) {
+                    itemstack.grow(-1);
+                    piglin.heal(7);
                 }
                 else if (addBehavior(player, piglin, itemstack)) {
-                    packet = ParticleTypes.HAPPY_VILLAGER;
-                }
-
-                if (packet != null) {
                     ((ServerPlayer) player).connection.send(new ClientboundLevelParticlesPacket(
-                            packet, false,
+                            ParticleTypes.HAPPY_VILLAGER, false,
                             piglin.getX(), piglin.getY() + 1, piglin.getZ(),
                             0.5f, 0.5f, 0.5f,
                             0.1f, 15
@@ -134,6 +123,10 @@ public class PiglinBehavior {
                     continue;
                 }
 
+                if (abstractPiglin.tickCount % 40 == 0) {
+                    abstractPiglin.heal(1);
+                }
+
                 if (!targetNull && !(target instanceof AbstractPiglin)) {
                     targetUUID = target.getUUID();
                     currentTarget = brain.getMemory(MemoryModuleType.ANGRY_AT).isPresent() && brain.getMemory(MemoryModuleType.ANGRY_AT).get().equals(abstractPiglin.getPersistentData().getUUID("owner")) ? currentTarget : brain.getMemory(MemoryModuleType.ANGRY_AT);
@@ -154,7 +147,7 @@ public class PiglinBehavior {
                 } else if (!targetNull && currentTarget.isEmpty()) {
                     brain.setMemory(MemoryModuleType.ANGRY_AT, targetUUID);
                 } else if (targetNull) {
-                    brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(player.blockPosition(), baseWalkSpeed, 5));
+                    brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(player.blockPosition(), baseWalkSpeed, 4));
                 }
             }
         }

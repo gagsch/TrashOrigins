@@ -1,16 +1,15 @@
 {
     "powers": [
-        "trashorigins:piglin/capitalism",
+        "trashorigins:piglin/hire_piglin",
         "trashorigins:piglin/gold_armor",
-        "trashorigins:piglin/blessed",
         "trashorigins:piglin/piglin_neutral",
-        "origins:nether_spawn",
         "trashorigins:piglin/overworld_weak",
+        "origins:nether_spawn",
         "origins:carnivore"
     ],
 
     "icon": "minecraft:raw_gold",
-    "name": "Piglin",
-    "description": "Piglins are human-like pigs that reside in the Nether. They are obsessed with gold and attack anyone who isn't.",
+    "name": "Piglin Chieftain",
+    "description": "Once powerful brutes, now chieftains under the Piglin Elders. These piglins can recruit other piglins to fight for them.",
     "impact": 3
 }

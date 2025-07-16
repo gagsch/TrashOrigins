@@ -37,17 +37,16 @@ public class TrashOrigins {
     public TrashOrigins() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(FogStuff.class);
-        MinecraftForge.EVENT_BUS.register(ClientModEvents.class);
+        MinecraftForge.EVENT_BUS.register(ClientEvents.class);
         MinecraftForge.EVENT_BUS.register(PiglinBehavior.class);
 
         Powers.POWER_FACTORIES.register(bus);
-
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
-    public static class ClientModEvents {
+    public static class ClientEvents {
         @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
         public static void onScreenInit(ScreenEvent.Init.Post event) {
@@ -62,9 +61,7 @@ public class TrashOrigins {
 
             event.addListener(button);
         }
-    }
 
-    public static class FogStuff {
         @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
         public static void renderFog(ViewportEvent.RenderFog event) {
