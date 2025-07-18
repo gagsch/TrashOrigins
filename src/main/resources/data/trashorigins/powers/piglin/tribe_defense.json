@@ -1,0 +1,6 @@
+{
+    "type": "origins:simple",
+
+    "name": "Strength in Numbers",
+    "description": "You deal some extra damage for every piglin under your command."
+}

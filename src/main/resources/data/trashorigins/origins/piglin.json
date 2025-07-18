@@ -1,7 +1,9 @@
 {
     "powers": [
         "trashorigins:piglin/hire_piglin",
-        "trashorigins:piglin/gold_armor",
+        "trashorigins:piglin/tribe_defense",
+        "trashorigins:piglin/hardened_warrior",
+        "trashorigins:piglin/gold_only",
         "trashorigins:piglin/piglin_neutral",
         "trashorigins:piglin/overworld_weak",
         "origins:nether_spawn",

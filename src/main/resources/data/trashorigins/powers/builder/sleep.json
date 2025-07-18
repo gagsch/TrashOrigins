@@ -1,7 +1,7 @@
 {
     "type": "origins:prevent_sleep",
     "set_spawn_point": true,
-    "message": "MUST. BUILD.",
+    "message": "MUST BUILD.",
 
     "name": "Insomnia",
     "description": "You shouldn't waste your precious building time on sleep."

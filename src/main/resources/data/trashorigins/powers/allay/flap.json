@@ -5,12 +5,12 @@
         "actions": [
             {
                 "type": "origins:add_velocity",
-                "y": 1.5
+                "y": 1.2
             },
             {
                 "type": "origins:change_resource",
                 "resource": "trashorigins:allay/amethyst_count",
-                "change": -6
+                "change": -4
             }
         ]
     },
@@ -32,5 +32,5 @@
     "cooldown": 40,
 
     "name": "Flapping",
-    "description": "Flap your wings to gain height. This action consumes six energy point."
+    "description": "Flap your wings to gain height. This action consumes four energy point."
 }

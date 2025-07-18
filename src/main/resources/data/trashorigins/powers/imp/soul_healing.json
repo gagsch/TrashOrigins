@@ -30,8 +30,8 @@
             }
         ]
     },
-    "interval": 40,
+    "interval": 30,
 
-    "name": "Selfish Healing",
-    "description": "Consuming ones soul heals you for two hearts."
+    "name": "Selfish Mending",
+    "description": "When hurt, a stored soul is automatically consumed to restore 2 hearts."
 }

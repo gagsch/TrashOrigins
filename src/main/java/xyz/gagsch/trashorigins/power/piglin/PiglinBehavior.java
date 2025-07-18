@@ -9,6 +9,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.WalkTarget;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -28,9 +31,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-import static xyz.gagsch.trashorigins.power.Powers.PIGLIN_HIRE_PIGLIN_LOCATION;
+import static xyz.gagsch.trashorigins.power.Powers.PIGLIN_GOLD_STANDARD_LOCATION;
 
 public class PiglinBehavior {
+    public static final UUID DAMAGE_MOD_UUID = UUID.fromString("44444444-4444-4444-4444-445444444444");
     public static final Map<Player, List<AbstractPiglin>> PIGLIN_BEHAVIOR_MAP = new HashMap<>();
     public static final PiglinTeleporter PIGLIN_TELEPORTER = new PiglinTeleporter();
 
@@ -62,14 +66,14 @@ public class PiglinBehavior {
         Player player = event.getEntity();
         if (event.getTarget() instanceof AbstractPiglin piglin && !event.getLevel().isClientSide()) {
             IPowerContainer.get(player).ifPresent(handler -> {
-                if (!handler.hasPower(PIGLIN_HIRE_PIGLIN_LOCATION))
+                if (!handler.hasPower(PIGLIN_GOLD_STANDARD_LOCATION))
                     return;
 
                 ItemStack itemstack = player.getItemInHand(event.getHand());
 
                 if (itemstack.getItem() == Items.PORKCHOP || itemstack.getItem() == Items.COOKED_PORKCHOP) {
                     itemstack.grow(-1);
-                    piglin.heal(7);
+                    piglin.heal(4);
                 }
                 else if (addBehavior(player, piglin, itemstack)) {
                     ((ServerPlayer) player).connection.send(new ClientboundLevelParticlesPacket(
@@ -91,29 +95,38 @@ public class PiglinBehavior {
 
         while (playerIterator.hasNext()) {
             Player player = playerIterator.next();
+            List<AbstractPiglin> list = PIGLIN_BEHAVIOR_MAP.get(player);
+
 
             if (player.isDeadOrDying()) {
-                for (AbstractPiglin piglin : PIGLIN_BEHAVIOR_MAP.get(player)) {
+                for (AbstractPiglin piglin : list) {
                     piglin.getPersistentData().remove("owner");
                     piglin.setImmuneToZombification(false);
                 }
-                PIGLIN_BEHAVIOR_MAP.get(player).clear();
+                list.clear();
                 playerIterator.remove();
                 continue;
             }
 
-            Iterator<AbstractPiglin> iterator = PIGLIN_BEHAVIOR_MAP.get(player).iterator();
+            AttributeInstance attackAttr = player.getAttribute(Attributes.ATTACK_DAMAGE);
+            if (attackAttr != null) {
+                attackAttr.removeModifier(DAMAGE_MOD_UUID);
+                attackAttr.addTransientModifier(new AttributeModifier(DAMAGE_MOD_UUID, "Strength in Numbers boost", (double) list.size() / 3, AttributeModifier.Operation.ADDITION));
+            }
+
+            Iterator<AbstractPiglin> iterator = list.iterator();
 
             LivingEntity target = getTarget(player);
 
-            boolean targetNull = target == null || target.isRemoved() || player.distanceToSqr(target) > 400;
-
-            Optional<UUID> currentTarget = Optional.empty();
-            UUID targetUUID = null;
+            boolean targetExists = target != null && !target.isRemoved() && player.distanceToSqr(target) < 650;
 
             while (iterator.hasNext()) {
                 AbstractPiglin abstractPiglin = iterator.next();
-                Brain<?> brain = abstractPiglin.getBrain();
+
+                if (abstractPiglin == null) {
+                    iterator.remove();
+                    continue;
+                }
 
                 if (!abstractPiglin.isAlive()) {
                     if (abstractPiglin.isDeadOrDying()) {
@@ -123,31 +136,23 @@ public class PiglinBehavior {
                     continue;
                 }
 
+                Brain<?> brain = abstractPiglin.getBrain();
+
                 if (abstractPiglin.tickCount % 40 == 0) {
                     abstractPiglin.heal(1);
-                }
-
-                if (!targetNull && !(target instanceof AbstractPiglin)) {
-                    targetUUID = target.getUUID();
-                    currentTarget = brain.getMemory(MemoryModuleType.ANGRY_AT).isPresent() && brain.getMemory(MemoryModuleType.ANGRY_AT).get().equals(abstractPiglin.getPersistentData().getUUID("owner")) ? currentTarget : brain.getMemory(MemoryModuleType.ANGRY_AT);
                 }
 
                 double distance = player.distanceToSqr(abstractPiglin);
                 float baseWalkSpeed = player.getSpeed() * 10.5f;
 
-                if (distance > 400) {
+                if (targetExists && !(target instanceof AbstractPiglin)) {
+                    brain.setMemory(MemoryModuleType.ANGRY_AT, target.getUUID());
+                } else {
                     brain.eraseMemory(MemoryModuleType.ANGRY_AT);
-                    brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(player.blockPosition(), baseWalkSpeed * 1.25f, 1));
+                    brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(player.blockPosition(), baseWalkSpeed, 4));
                     if (distance > 1600) {
                         abstractPiglin.teleportTo(player.getX(), player.getY(), player.getZ());
                     }
-                }
-                else if (!targetNull && currentTarget.isPresent() && currentTarget.get() != targetUUID) {
-                    brain.setMemory(MemoryModuleType.ANGRY_AT, targetUUID);
-                } else if (!targetNull && currentTarget.isEmpty()) {
-                    brain.setMemory(MemoryModuleType.ANGRY_AT, targetUUID);
-                } else if (targetNull) {
-                    brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(player.blockPosition(), baseWalkSpeed, 4));
                 }
             }
         }
@@ -156,26 +161,19 @@ public class PiglinBehavior {
     private static @Nullable LivingEntity getTarget(Player player) {
         var lastHurt = player.getLastHurtMob();
         var lastHurtBy = player.getLastHurtByMob();
-        LivingEntity target = lastHurt != null ? lastHurt : lastHurtBy;
 
-        if (lastHurt != lastHurtBy) {
-            if (lastHurt instanceof Player) {
-                target = lastHurtBy;
-            } else if (lastHurtBy instanceof Player) {
-                target = lastHurt;
-            }
+        if (lastHurt != null && !(lastHurt instanceof Player) && lastHurt.isAlive()) {
+            return lastHurt;
+        } else if (lastHurt instanceof Player && lastHurtBy == lastHurt && lastHurt.isAlive()) {
+            return lastHurt;
         }
 
-        if (target == null || target.isRemoved()) {
-            target = findNearestHostile(player);
-        }
 
-        return target;
+        return findNearestHostile(player);
     }
-
     private static @Nullable LivingEntity findNearestHostile(Player player) {
         Level level = player.level();
-        AABB area = player.getBoundingBox().inflate(10);
+        AABB area = player.getBoundingBox().inflate(16);
         List<Mob> entities = level.getNearbyEntities(Mob.class, TargetingConditions.forCombat(), player, area);
 
         return entities.stream()
@@ -186,10 +184,11 @@ public class PiglinBehavior {
 
     @SubscribeEvent
     public static void dimensionTravel(EntityTravelToDimensionEvent event) {
-        if (event.getEntity().level().isClientSide || !(event.getEntity() instanceof AbstractPiglin piglin) || !piglin.getPersistentData().hasUUID("owner")) {
+        if (event.getEntity().level().isClientSide || event.getEntity() == null || !(event.getEntity() instanceof AbstractPiglin piglin) || !piglin.getPersistentData().hasUUID("owner")) {
             return;
         }
 
+        // For some reason, it has to loop over sets to let piglins come with the player when they travel through dimensions.
         for (Player player : PIGLIN_BEHAVIOR_MAP.keySet()) {
             if (PIGLIN_BEHAVIOR_MAP.get(player).contains(piglin)) {
                 event.setCanceled(true);

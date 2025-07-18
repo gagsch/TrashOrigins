@@ -1,0 +1,16 @@
+{
+    "type": "origins:modify_damage_taken",
+    "damage_armor_condition": {
+        "type": "origins:health",
+        "comparison": "<",
+        "compare_to": 10
+    },
+    "modifier": {
+        "name": "Hardened Warrior reduction",
+        "operation": "multiply_total_multiplicative",
+        "value": -0.2
+    },
+
+    "name": "Hardened Warrior",
+    "description": "You naturally take 20% less damage."
+}

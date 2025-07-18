@@ -20,16 +20,16 @@ public class UpdateScreen extends Screen {
 
         this.addRenderableWidget(Button.builder(Component.literal("Update and Restart"), button -> {
             ModrinthAutoUpdater.updateAndRestart();
+        }).bounds(centerX - 100, centerY - 24, 200, 20).build());
+
+        this.addRenderableWidget(Button.builder(Component.literal("Enable Auto-Update"), button -> {
+            Config.AUTO_UPDATE.set(true);
+            ModrinthAutoUpdater.updateAndRestart();
         }).bounds(centerX - 100, centerY, 200, 20).build());
 
         this.addRenderableWidget(Button.builder(Component.literal("Later"), button -> {
             Minecraft.getInstance().setScreen(null);
         }).bounds(centerX - 100, centerY + 24, 200, 20).build());
-
-        this.addRenderableWidget(Button.builder(Component.literal("Enable Auto-Update"), button -> {
-            Config.AUTO_UPDATE.set(true);
-            ModrinthAutoUpdater.updateAndRestart();
-        }).bounds(centerX - 100, centerY + 48, 200, 20).build());
     }
 
     @Override

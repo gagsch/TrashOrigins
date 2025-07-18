@@ -52,9 +52,9 @@ public class LightBoostPower extends PowerFactory<NoConfiguration> {
             }
 
             AttributeInstance attackSpeedAttr = living.getAttribute(Attributes.ATTACK_SPEED);
-            if (attackAttr != null) {
-                attackAttr.removeModifier(ATTACK_SPEED_MOD_UUID);
-                attackAttr.addTransientModifier(new AttributeModifier(ATTACK_SPEED_MOD_UUID, "Light attack speed boost", multiplier, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            if (attackSpeedAttr != null) {
+                attackSpeedAttr.removeModifier(ATTACK_SPEED_MOD_UUID);
+                attackSpeedAttr.addTransientModifier(new AttributeModifier(ATTACK_SPEED_MOD_UUID, "Light attack speed boost", multiplier, AttributeModifier.Operation.MULTIPLY_TOTAL));
             }
 
             LIGHT_ENERGY_POWER = ApoliAPI.getPowers().get(LIGHT_ENERGY_LOCATION);

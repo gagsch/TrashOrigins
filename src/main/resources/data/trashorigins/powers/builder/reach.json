@@ -6,7 +6,7 @@
         "actions": [
             {
                 "type": "origins:execute_command",
-                "command": "scale set pehkui:reach 1.15 @s"
+                "command": "scale set pehkui:reach 1.2 @s"
             },
             {
                 "type": "origins:execute_command",

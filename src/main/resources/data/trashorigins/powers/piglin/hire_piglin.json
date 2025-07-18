@@ -1,6 +1,6 @@
 {
     "type": "origins:simple",
 
-    "name": "Build an Army",
-    "description": "You can hire piglins to fight for you by giving them gold, with a limit of 10 hired piglins."
+    "name": "Gold Standard",
+    "description": "You can hire Piglins with Gold Ingots, with a maximum of 10 under your command."
 }

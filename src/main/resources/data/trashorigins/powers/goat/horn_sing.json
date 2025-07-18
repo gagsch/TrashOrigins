@@ -5,7 +5,7 @@
         "actions": [
             {
                 "type": "origins:execute_command",
-                "command": "effect give @a[distance=..20] minecraft:regeneration 6 3 true"
+                "command": "effect give @a[distance=..20] minecraft:regeneration 8 2 true"
             },
             {
                 "type": "origins:play_sound",
@@ -25,5 +25,5 @@
     "cooldown": 800,
 
     "name": "Sing",
-    "description": "Everyone in a 20 block radius gains Regeneration III for 6 seconds, but you can't attack anything for the duration of the (40s) cooldown."
+    "description": "Everyone in a 20 block radius gains Regeneration III for 8 seconds, but you can't attack anything for the duration of the (40s) cooldown."
 }
