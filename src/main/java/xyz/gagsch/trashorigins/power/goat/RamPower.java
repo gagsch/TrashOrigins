@@ -20,7 +20,6 @@ import static xyz.gagsch.trashorigins.power.Powers.RAM_ABILITY_LOCATION;
 
 @SuppressWarnings("all")
 public class RamPower extends PowerFactory<NoConfiguration> {
-    public static ConfiguredPower<?,?> RAM_ABILITY_POWER;
     public boolean hasHit = false;
 
     public RamPower() {

@@ -1,0 +1,11 @@
+{
+    "type": "trashorigins:companion",
+
+    "entity_action": {
+        "type": "origins:nothing"
+    },
+    "cooldown": 600,
+
+    "name": "Companion",
+    "description": "You can summon a tamed allay to follow you."
+}

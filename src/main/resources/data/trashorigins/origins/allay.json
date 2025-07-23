@@ -1,17 +1,15 @@
 {
     "powers": [
-        "trashorigins:allay/use_amethyst",
-        "trashorigins:allay/amethyst_count",
-        "trashorigins:allay/fly_consume",
-        "trashorigins:allay/flap",
-        "trashorigins:allay/curse_damage",
+        "trashorigins:allay/music_flight",
+        "trashorigins:allay/music_charge",
+        "trashorigins:allay/companion",
         "trashorigins:general/itty_bitty",
         "trashorigins:general/weak",
-        "origins:fragile"
+        "origins:water_vulnerability"
     ],
     
     "icon": "minecraft:amethyst_shard",
     "name": "Allay",
-    "description": "The better sibling of the Vex. These little guys don't have a bad bone in there body.",
-    "impact": 3
+    "description": "The better sibling of the Vex. These creatures are powered by music and reproduce with amethyst.",
+    "impact": 2
 }

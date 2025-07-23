@@ -1,0 +1,29 @@
+{
+    "type": "origins:multiple",
+
+    "flight": {
+        "type": "origins:creative_flight",
+        "condition": {
+            "type": "origins:resource",
+            "resource": "trashorigins:allay/music_charge",
+            "comparison": ">",
+            "compare_to": 0
+        }
+    },
+    "use_charge": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "trashorigins:allay/music_charge",
+            "change": -1
+        },
+        "condition": {
+            "type": "origins:creative_flying"
+        }
+    },
+    "music_flight": {
+        "type": "trashorigins:music_flight"
+    },
+
+    "hidden": true
+}

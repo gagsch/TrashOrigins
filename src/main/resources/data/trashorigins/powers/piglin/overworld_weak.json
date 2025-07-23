@@ -1,7 +1,21 @@
 {
     "type": "origins:multiple",
 
-    "shaking":{
+    "less_damage": {
+        "type": "origins:modify_damage_dealt",
+        "condition": {
+            "type": "origins:dimension",
+            "dimension": "minecraft:the_nether",
+            "inverted": true
+        },
+        "modifier": {
+            "name": "Overworld Weakness",
+            "operation": "multiply_base_multiplicative",
+            "value": -0.3
+        }
+    },
+
+    "shaking": {
         "type": "origins:shaking",
         "condition": {
             "type": "origins:dimension",
@@ -10,19 +24,19 @@
         }
     },
 
-    "no_regen":{
+    "no_regen": {
         "type": "origins:modify_healing",
-        "modifier": {
-            "operation": "multiply_total",
-            "value": -0.5
-        },
         "condition": {
             "type": "origins:dimension",
             "dimension": "minecraft:the_nether",
             "inverted": true
+        },
+        "modifier": {
+            "operation": "multiply_total",
+            "value": -0.5
         }
     },
 
     "name": "Gift of the Elders",
-    "description": "You and your army won't zombify outside the Nether, but your regeneration will be halved."
+    "description": "You and your army won't zombify outside the Nether, but your damage and regeneration will be reduced."
 }

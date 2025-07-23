@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.Brain;
@@ -15,13 +16,13 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.WalkTarget;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -32,11 +33,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 import static xyz.gagsch.trashorigins.power.Powers.PIGLIN_GOLD_STANDARD_LOCATION;
+import static xyz.gagsch.trashorigins.power.allay.CompanionPower.ALLAYS;
 
 public class PiglinBehavior {
     public static final UUID DAMAGE_MOD_UUID = UUID.fromString("44444444-4444-4444-4444-445444444444");
     public static final Map<Player, List<AbstractPiglin>> PIGLIN_BEHAVIOR_MAP = new HashMap<>();
-    public static final PiglinTeleporter PIGLIN_TELEPORTER = new PiglinTeleporter();
 
     public static boolean addBehavior(Player player, AbstractPiglin piglin, ItemStack itemstack) {
         if (piglin.isBaby() || PIGLIN_BEHAVIOR_MAP.containsKey(player) && (PIGLIN_BEHAVIOR_MAP.get(player).size() >= 10 || PIGLIN_BEHAVIOR_MAP.get(player).contains(piglin))) {
@@ -184,41 +185,78 @@ public class PiglinBehavior {
 
     @SubscribeEvent
     public static void dimensionTravel(EntityTravelToDimensionEvent event) {
-        if (event.getEntity().level().isClientSide || event.getEntity() == null || !(event.getEntity() instanceof AbstractPiglin piglin) || !piglin.getPersistentData().hasUUID("owner")) {
+        if (event.getEntity().level().isClientSide() || event.getEntity() == null) {
             return;
         }
 
-        // For some reason, it has to loop over sets to let piglins come with the player when they travel through dimensions.
-        for (Player player : PIGLIN_BEHAVIOR_MAP.keySet()) {
-            if (PIGLIN_BEHAVIOR_MAP.get(player).contains(piglin)) {
-                event.setCanceled(true);
-                return;
-            }
+        if (event.getEntity() instanceof AbstractPiglin piglin && piglin.getPersistentData().hasUUID("owner")) {
+            event.setCanceled(true);
+            return;
+        }
+
+        if (event.getEntity() instanceof Allay allay && ALLAYS.containsValue(allay)) {
+            event.setCanceled(true);
         }
     }
 
     @SubscribeEvent
     public static void playerDimensionTravel(PlayerEvent.PlayerChangedDimensionEvent event) {
-        if (event.getEntity().level().isClientSide || !PIGLIN_BEHAVIOR_MAP.containsKey(event.getEntity())) {
+        if (event.getEntity().level().isClientSide())
+            return;
+
+        Player player = event.getEntity();
+        double x = player.getX();
+        double y = player.getY();
+        double z = player.getZ();
+        ServerLevel level = Objects.requireNonNull(player.getServer()).getLevel(event.getTo());
+
+        if (level == null)
+            return;
+
+        if (PIGLIN_BEHAVIOR_MAP.containsKey(player)) {
+            Set<AbstractPiglin> piglins = new HashSet<>(PIGLIN_BEHAVIOR_MAP.get(player));
+            PIGLIN_BEHAVIOR_MAP.get(player).clear();
+
+            for (AbstractPiglin piglin : piglins) {
+                if (piglin == null || !piglin.isAlive()) {
+                    continue;
+                }
+                AbstractPiglin newPiglin = (AbstractPiglin) teleportTo(piglin, level, x, y, z);
+                PIGLIN_BEHAVIOR_MAP.get(player).add(newPiglin);
+            }
+
             return;
         }
 
-        Player player = event.getEntity();
-        ServerLevel level = player.getServer().getLevel(event.getTo());
+        if (ALLAYS.containsKey(player.getUUID())) {
+            Allay allay = ALLAYS.get(player.getUUID());
 
-        Set<AbstractPiglin> piglins = new HashSet<>(PIGLIN_BEHAVIOR_MAP.get(player));
-        PIGLIN_BEHAVIOR_MAP.get(player).clear();
+            if (allay == null)
+                return;
 
-        for (AbstractPiglin piglin : piglins) {
-            if (piglin == null || !piglin.isAlive()) {
-                continue;
-            }
-            AbstractPiglin newPiglin = (AbstractPiglin) piglin.changeDimension(level, PIGLIN_TELEPORTER);
-            PIGLIN_BEHAVIOR_MAP.get(player).add(newPiglin);
+            Allay newAllay = (Allay) teleportTo(allay, level, x, y, z);
+            ALLAYS.put(player.getUUID(), newAllay);
         }
     }
 
-    public static class PiglinTeleporter implements ITeleporter {
+    public static Entity teleportTo(Entity entity, ServerLevel level, double x, double y, double z) {
+        if (level == entity.level()) {
+            entity.moveTo(x, y, z, 0, 0);
+        } else {
+            entity.unRide();
+            Entity newEntity = entity.getType().create(level);
+            if (newEntity == null) {
+                return entity;
+            }
 
+            newEntity.restoreFrom(entity);
+            newEntity.moveTo(x, y, z, 0, 0);
+            entity.setRemoved(Entity.RemovalReason.CHANGED_DIMENSION);
+            level.addDuringTeleport(newEntity);
+
+            return newEntity;
+        }
+
+        return entity;
     }
 }
